@@ -6,4 +6,6 @@ History
 ------------------
 
 * Initial coding by Simon Moulds, packaged by Simon Mudd
-* Initial realse on pypi
+* Initial release on pypi
+* Basic functionality: simply calls the NRFA API and gets time series data
+* A command line script is included: nrfa_get_ts
