@@ -8,7 +8,7 @@ import pandas as pd
 
 # The base URL to access the NFRA API
 BASE_URL = "https://nrfaapps.ceh.ac.uk/nrfa/ws"
-get_ts9000
+
 VALID_DATA_TYPES = [
     'gdf', 'ndf', 'gmf', 'nmf', 'cdr', 'cdr-d', 'cmr',
     'pot-stage', 'pot-flow', 'gauging-stage', 'gauging-flow',
@@ -16,7 +16,8 @@ VALID_DATA_TYPES = [
 ]
 
 def catalogue():
-    """This gets the data catalog from nfra an returns it as a pandas dataframe
+    """
+    This gets the data catalog from nfra an returns it as a pandas dataframe
     You can use this dataframe to get station characteristics
     
 
@@ -42,7 +43,8 @@ def catalogue():
 
 
 def _build_ts(response):
-    """This is used to parse timeseries data from the nfra
+    """
+    This is used to parse timeseries data from the nfra
     
     Args:
         response (json):  this is a json that is parsed from a bitstream provided by the nfra API
@@ -61,7 +63,8 @@ def _build_ts(response):
 
 
 def get_ts(id, data_type):
-    """This gets a timeseries from the National Flow Record Archive
+    """
+    This gets a timeseries from the National Flow Record Archive
     
     Args:
         id (int): an integer value for a station 

@@ -32,10 +32,10 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
     ],
-    description="A collection of tools for exploring hillslope evolution.",
+    description="A simple package from getting data from the national flow record archive.",
     entry_points={
         'console_scripts': [
-            'nfrapy_get_ts=scripts.nfrapy_get_ts:main',
+            'nfrapy_get_ts=nfrapy.nfrapy_get_ts:main',
         ],    
     },
     install_requires=requirements,

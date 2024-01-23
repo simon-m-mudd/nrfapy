@@ -3,7 +3,7 @@ nfrapy
 ============
 
 
-A collection of tools for exploring nfra evolution.
+A collection of tools for exploring nfra.
 
 
 * Free software: MIT license
@@ -13,6 +13,6 @@ A collection of tools for exploring nfra evolution.
 Features
 --------
 
-* TODO
+* Gets national flow record archive datasets and loads them into pandas dataframes
 
 
