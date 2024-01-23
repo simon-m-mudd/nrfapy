@@ -1,4 +1,4 @@
-"""Console script for hillslopetoy."""
+"""Console script for nfrapy."""
 import sys
 import click
 
