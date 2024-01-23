@@ -17,7 +17,7 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest>=3', ]
 
 setup(
-    author="Simon M Mudd",
+    author="Simon Moulds and Simon Mudd",
     author_email='simon.m.mudd@ed.ac.uk',
     python_requires='>=3.7',
     classifiers=[
@@ -35,8 +35,8 @@ setup(
     description="A collection of tools for exploring hillslope evolution.",
     entry_points={
         'console_scripts': [
-            'nfrapy=nfrapy.cli:main',
-        ],
+            'nfrapy_get_ts=scripts.nfrapy_get_ts:main',
+        ],    
     },
     install_requires=requirements,
     license="MIT license",
