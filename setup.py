@@ -42,7 +42,7 @@ setup(
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
-    keywords='nrfapy',
+    keywords='nrfapy,national river flow archive,hydrology,rivers,discharge,floods',
     name='nrfapy',
     packages=find_packages(include=['nrfapy', 'nrfapy.*']),
     setup_requires=setup_requirements,
