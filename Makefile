@@ -48,7 +48,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 nfrapy tests
+	flake8 nrfapy tests
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -63,7 +63,7 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/nfrapy.rst
+	rm -f docs/nrfapy.rst
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ hillslopetoy
 	$(MAKE) -C docs clean
