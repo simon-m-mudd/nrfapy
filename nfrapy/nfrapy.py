@@ -6,7 +6,7 @@ import urllib.request
 import json
 import pandas as pd
 
-# The base URL to access the NFRA API
+# The base URL to access the nrfa API
 BASE_URL = "https://nrfaapps.ceh.ac.uk/nrfa/ws"
 
 VALID_DATA_TYPES = [
@@ -17,12 +17,12 @@ VALID_DATA_TYPES = [
 
 def catalogue():
     """
-    This gets the data catalog from nfra an returns it as a pandas dataframe
+    This gets the data catalog from nrfa an returns it as a pandas dataframe
     You can use this dataframe to get station characteristics
     
 
 	Returns:
-		pandas Dataframe containing the National Flow Record Archive catalog, which has metadata about all stations
+		pandas Dataframe containing the National River Flow Archive catalog, which has metadata about all stations
 
 	Author: Simon Moulds
 	Date: 20/01/2024
@@ -44,10 +44,10 @@ def catalogue():
 
 def _build_ts(response):
     """
-    This is used to parse timeseries data from the nfra
+    This is used to parse timeseries data from the nrfa
     
     Args:
-        response (json):  this is a json that is parsed from a bitstream provided by the nfra API
+        response (json):  this is a json that is parsed from a bitstream provided by the nrfa API
 
 	Returns:
 		pandas Dataframe containing the requested dataset
@@ -64,7 +64,7 @@ def _build_ts(response):
 
 def get_ts(id, data_type):
     """
-    This gets a timeseries from the National Flow Record Archive
+    This gets a timeseries from the National River Flow Archive
     
     Args:
         id (int): an integer value for a station 

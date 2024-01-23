@@ -11,7 +11,7 @@
 
 #from __future__ import print_function
 import pandas as pd
-import nfrapy
+import nrfapy
 import sys
 
 #=============================================================================
@@ -60,7 +60,7 @@ def main(args=None):
     # The location of the data files
     parser.add_argument("-id", "--id", type=int, help="The station ID. At the moment there is no error checking if this station exists.")
     parser.add_argument("-dt", "--data_type", type=str, help="The kind of data you want. Options are 'gdf', 'ndf', 'gmf', 'nmf', 'cdr', 'cdr-d', 'cmr', 'pot-stage', 'pot-flow','gauging-stage', 'gauging-flow','amax-stage', 'amax-flow' please see https://nrfa.ceh.ac.uk/data-formats-types")
-    parser.add_argument("-of", "--out_file_name", type=str, help="The name of the output file.",default="nfra_data.csv")
+    parser.add_argument("-of", "--out_file_name", type=str, help="The name of the output file.",default="nrfa_data.csv")
 
     args = parser.parse_args()
  
@@ -72,7 +72,7 @@ def main(args=None):
         print("WARNING! You haven't supplied your data_type. Please specify this with the flag '-dt'")
         sys.exit()
 
-    df = nfrapy.get_ts(args.id,args.data_type)
+    df = nrfapy.get_ts(args.id,args.data_type)
     
     
     args.out_file_name = add_csv_extension(args.out_file_name)

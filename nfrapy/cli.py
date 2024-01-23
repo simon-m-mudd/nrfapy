@@ -1,13 +1,13 @@
-"""Console script for nfrapy."""
+"""Console script for nrfapy."""
 import sys
 import click
 
 
 @click.command()
 def main(args=None):
-    """Console script for nfrapy."""
+    """Console script for nrfapy."""
     click.echo("Replace this message by putting your code into "
-               "nfrapy.cli.main")
+               "nrfapy.cli.main")
     click.echo("See click documentation at https://click.palletsprojects.com/")
     return 0
 

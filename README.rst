@@ -1,18 +1,18 @@
 ============
-nfrapy
+nrfapy
 ============
 
 
-A collection of tools for exploring nfra.
+A collection of tools for exploring nrfa.
 
 
 * Free software: MIT license
-* Documentation: https://hillslopetoy.readthedocs.io.
+* Documentation: https://nrfapy.readthedocs.io.
 
 
 Features
 --------
 
-* Gets national flow record archive datasets and loads them into pandas dataframes
+* Gets national river flow archive datasets and loads them into pandas dataframes
 
 
