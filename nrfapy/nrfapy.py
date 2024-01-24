@@ -15,6 +15,7 @@ VALID_DATA_TYPES = [
     'amax-stage', 'amax-flow'
 ]
 
+
 def catalogue():
     """
     This gets the data catalog from nrfa an returns it as a pandas dataframe
@@ -59,12 +60,17 @@ def _build_ts(response):
     dates = response['data-stream'][0::2]
     values = response['data-stream'][1::2]
     df = pd.DataFrame.from_dict({'time': dates, variable: values})
+
+    # Format `time` column as datetime. The API docs specify that
+    # times returned by the API have ISO8601 format.
+    df['time'] = pd.to_datetime(df['time'], format='ISO8601')
+
     return df
 
 
 def get_ts(id, data_type):
     """
-    This gets a timeseries from the National River Flow Archive
+    This gets a timeseries from the UK National River Flow Archive
     
     Args:
         id (int): an integer value for a station 
