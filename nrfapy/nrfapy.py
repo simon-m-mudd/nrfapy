@@ -86,7 +86,7 @@ def get_ts(id, data_type, date_index=False):
 	Returns:
 		pandas Dataframe containing the requested dataset
 
-	Author: Simon Moulds
+	Author: Simon Moulds, Dan Goldberg
 	Date: 20/01/2024
 	"""
     
