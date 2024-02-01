@@ -43,7 +43,7 @@ def catalogue():
     return df
 
 
-def _build_ts(response):
+def _build_ts(response, date_index):
     """
     This is used to parse timeseries data from the nrfa
     
@@ -65,16 +65,22 @@ def _build_ts(response):
     # times returned by the API have ISO8601 format.
     df['time'] = pd.to_datetime(df['time'], format='ISO8601')
 
+    if (date_index):
+        if variable in ['gdf','cdr']:
+            df = df.set_index('time')
+        else:
+            raise ValueError('date_index=True should only be used for gdf and cdr')
+
     return df
 
 
-def get_ts(id, data_type):
+def get_ts(id, data_type, date_index=False):
     """
     This gets a timeseries from the UK National River Flow Archive
     
     Args:
         id (int): an integer value for a station 
-        data_type (str): A string describing the data type you want. Options are: 'gdf', 'ndf', 'gmf', 'nmf', 'cdr', 'cdr-d', 'cmr', 'pot-stage', 'pot-flow','gauging-stage', 'gauging-flow','amax-stage', 'amax-flow' The details of these options can be found at https://nrfa.ceh.ac.uk/data-formats-types
+        data_type (str or str list): A string describing the data type you want. Options are: 'gdf', 'ndf', 'gmf', 'nmf', 'cdr', 'cdr-d', 'cmr', 'pot-stage', 'pot-flow','gauging-stage', 'gauging-flow','amax-stage', 'amax-flow' The details of these options can be found at https://nrfa.ceh.ac.uk/data-formats-types, with a list of strings the dataframe may be large if times are not overlapping
         
 
 	Returns:
@@ -83,16 +89,36 @@ def get_ts(id, data_type):
 	Author: Simon Moulds
 	Date: 20/01/2024
 	"""
-    query = "station=" + str(id) + "&data-type=" + data_type + "&format=json-object"
-    stations_info_url = "{BASE}/time-series?{QUERY}".format(
-        BASE=BASE_URL, QUERY=query
-    )
+    
+    if isinstance(data_type,str):
+        multivar=False
+        data_type = [data_type]
+    elif all(isinstance(sublist, str) for sublist in data_type):
+        multivar=True
+    else:
+        ValueError('data_type is not a string, or list of strings')
 
-    # Send request and read response
-    response = urllib.request.urlopen(stations_info_url).read()
+    df_list=[]
+    len_var = len(data_type)
+    if (not multivar): len_var=1
 
-    # Decode from JSON to Python dictionary
-    response = json.loads(response)
+    for i in range(len_var):
+        query = "station=" + str(id) + "&data-type=" + data_type[i] + "&format=json-object"
+        stations_info_url = "{BASE}/time-series?{QUERY}".format(
+            BASE=BASE_URL, QUERY=query
+        )
 
-    df = _build_ts(response)
+        # Send request and read response
+        response = urllib.request.urlopen(stations_info_url).read()
+
+        # Decode from JSON to Python dictionary
+        response = json.loads(response)
+
+        df_list.append(_build_ts(response, date_index))
+
+    if (multivar):
+        df = pd.concat(df_list)
+    else:
+        df = df_list[0]
+
     return df
