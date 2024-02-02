@@ -2,7 +2,7 @@
 
 __author__ = """Simon M Mudd and Simon Moulds"""
 __email__ = 'simon.m.mudd@ed.ac.uk'
-__version__ = '0.2'
+__version__ = '0.3'
 
 
 from .nrfapy import *

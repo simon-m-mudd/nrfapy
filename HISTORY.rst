@@ -17,3 +17,9 @@ History
 * Update so that the time column is always parsed as a datetime (S Moulds)
 * Added flag that allows the time to be used as an index, which is useful for some dataframe operations (D Golberg)
 * Added an option to feed the timeseries function a list of strings that all fetching then concatenaiton of different timeseries (D Goldberg)
+
+0.3 (2024-02-02)
+-----------------
+
+* Added some code to make sure the package works on pandas versions < 2.0.0 (SMM)
+

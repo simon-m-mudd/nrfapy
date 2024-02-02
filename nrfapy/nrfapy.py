@@ -5,6 +5,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import urllib.request
 import json
 import pandas as pd
+import pkg_resources
 
 # The base URL to access the nrfa API
 BASE_URL = "https://nrfaapps.ceh.ac.uk/nrfa/ws"
@@ -61,9 +62,19 @@ def _build_ts(response, date_index):
     values = response['data-stream'][1::2]
     df = pd.DataFrame.from_dict({'time': dates, variable: values})
 
-    # Format `time` column as datetime. The API docs specify that
-    # times returned by the API have ISO8601 format.
-    df['time'] = pd.to_datetime(df['time'], format='ISO8601')
+    try:
+        # Get the version of pandas
+        pandas_version = pkg_resources.get_distribution("pandas").version
+    except pkg_resources.DistributionNotFound:
+        print("pandas is not installed.")
+        return    
+        
+    if pkg_resources.parse_version(pandas_version) < pkg_resources.parse_version("2.0.0"):
+        #print(f"pandas version is below 2.0.0. Running alternate behavior...")
+        df['time'] = pd.to_datetime(df['time'])
+    else:
+        #print(f"pandas version is {pandas_version}. Running normal behavior...")
+        df['time'] = pd.to_datetime(df['time'], format='ISO8601')    
 
     if (date_index):
         if variable in ['gdf','cdr']:
