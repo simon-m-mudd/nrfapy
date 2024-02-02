@@ -69,8 +69,9 @@ def _build_ts(response, date_index):
         print("pandas is not installed.")
         return    
         
-    if pkg_resources.parse_version(pandas_version) < pkg_resources.parse_version("2.0.0"):
-        #print(f"pandas version is below 2.0.0. Running alternate behavior...")
+    pandas_version = pd.__version__
+    if pkg_resources.parse_version(pandas_version) < pkg_resources.parse_version("2.2.0"):
+        #print(f"pandas version is below 2.2.0. Running alternate behavior...")
         df['time'] = pd.to_datetime(df['time'])
     else:
         #print(f"pandas version is {pandas_version}. Running normal behavior...")

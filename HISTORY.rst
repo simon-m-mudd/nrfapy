@@ -23,3 +23,7 @@ History
 
 * Added some code to make sure the package works on pandas versions < 2.0.0 (SMM)
 
+0.4 (2024-02-02)
+-----------------
+
+* For utterly crazy reasons, I need to make this package resiliant against cases where the pandas version using .__version__ is different than that from pkg_resources
