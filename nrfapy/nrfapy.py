@@ -129,7 +129,7 @@ def get_ts(id, data_type, date_index=False):
         df_list.append(_build_ts(response, date_index))
 
     if (multivar):
-        df = pd.concat(df_list)
+        df = pd.concat(df_list,axis=1)
     else:
         df = df_list[0]
 
