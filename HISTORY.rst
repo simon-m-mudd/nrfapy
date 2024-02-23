@@ -27,3 +27,8 @@ History
 -----------------
 
 * For utterly crazy reasons, I need to make this package resiliant against cases where the pandas version using .__version__ is different than that from pkg_resources
+
+0.5 (2024-02-23)
+----------------
+
+* pandas concat in get_ts() needs to be called with the axis kwarg set to 1, otherwise strange behavior
